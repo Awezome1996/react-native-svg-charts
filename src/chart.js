@@ -110,7 +110,11 @@ class Chart extends PureComponent {
                         height > 0 && width > 0 &&
                         <Svg
                         ref={(ele)=>{
-                            svgRef(ele)
+                            if(ele){
+                                ele.toDataURL(base64=>{
+                                    svgRef(base64);
+                                });
+                            }
                         }} style={{ height, width }}>
                             {
                                 React.Children.map(children, child => {

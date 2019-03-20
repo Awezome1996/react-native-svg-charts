@@ -112,7 +112,7 @@ class Chart extends PureComponent {
                         <Svg
                         ref={(ele)=>{
                             if(ele){
-                                setRef(base64);
+                                setRef(ele);
                             }
                         }} style={{ height, width }}>
                             {

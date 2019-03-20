@@ -46,6 +46,7 @@ class Chart extends PureComponent {
             clampX,
             clampY,
             svg,
+            svgRef,
             children,
         } = this.props
 
@@ -107,7 +108,10 @@ class Chart extends PureComponent {
                 <View style={{ flex: 1 }} onLayout={ event => this._onLayout(event) }>
                     {
                         height > 0 && width > 0 &&
-                        <Svg style={{ height, width }}>
+                        <Svg
+                        ref={(ele)=>{
+                            svgRef(ele)
+                        }} style={{ height, width }}>
                             {
                                 React.Children.map(children, child => {
                                     if (child && child.props.belowChart) {
@@ -146,6 +150,7 @@ Chart.propTypes = {
         PropTypes.arrayOf(PropTypes.array),
     ]).isRequired,
     svg: PropTypes.object,
+    svgRef: PropTypes.func,
 
     style: PropTypes.any,
 
@@ -180,6 +185,7 @@ Chart.propTypes = {
 
 Chart.defaultProps = {
     svg: {},
+    svgRef: (ref)=>ref,
     width: 100,
     height: 100,
     curve: shape.curveLinear,

@@ -103,6 +103,7 @@ class Chart extends PureComponent {
             ...paths,
         }
 
+        const setSvgUriRef = (ref) => {this.props.svgRef(ref)};
         return (
             <View style={ style }>
                 <View style={{ flex: 1 }} onLayout={ event => this._onLayout(event) }>
@@ -112,7 +113,7 @@ class Chart extends PureComponent {
                         ref={(ele)=>{
                             if(ele){
                                 ele.toDataURL(base64=>{
-                                    svgRef(base64);
+                                    setSvgUriRef(base64);
                                 });
                             }
                         }} style={{ height, width }}>
